@@ -1,0 +1,17 @@
+[
+  {"id": "V01", "skill": "technical"},
+  {"id": "V02", "skill": "security"},
+  {"id": "V03", "skill": "registration"},
+  {"id": "V04", "skill": "technical"},
+  {"id": "V05", "skill": "hospitality"},
+  {"id": "V06", "skill": "general"},
+  {"id": "V07", "skill": "technical"},
+  {"id": "V08", "skill": "security"},
+  {"id": "V09", "skill": "registration"},
+  {"id": "V10", "skill": "technical"},
+  {"id": "V11", "skill": "hospitality"},
+  {"id": "V12", "skill": "general"},
+  {"id": "V13", "skill": "technical"},
+  {"id": "V14", "skill": "security"},
+  {"id": "V15", "skill": "general"}
+]
