@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fest Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="ticket">
+    <span>Campus Fest '26</span><span>Resource Desk</span><span>Admit all events</span>
+  </div>
+  <div class="wrap">
+    <p class="kicker">One fest day · 09:00 – 21:00 · Ten venues · Fifteen volunteers</p>
+    <h1>Five desks.<br>One fest day.<br><em>Zero double bookings.</em></h1>
+    <p class="lede">Every event on campus asks for rooms, mics, people and money at the same time.
+      Behind this counter five independent desks argue it out — by passing notes — until everyone
+      has a slot or a straight answer.</p>
+    <nav>
+      <a href="#programme">Programme</a><a href="#board">Free slots</a><a href="#desks">The desks</a>
+      <a href="#book">Book a slot</a><a href="#theatre">Watch them work</a><a href="#scenarios">Review scenarios</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="programme">
+    <div class="section-head">
+      <h2><span class="num">01</span> Today's programme</h2>
+      <label class="clock">It is now
+        <select id="now"></select>
+      </label>
+    </div>
+    <div class="stats" id="stats"></div>
+    <ol class="programme" id="programme-list"></ol>
+  </section>
+
+  <section id="board">
+    <div class="section-head">
+      <h2><span class="num">02</span> Who's where</h2>
+      <p class="aside">Solid blocks are booked. Empty, ruled cells are free.</p>
+    </div>
+    <div class="scroll"><div class="board" id="board-grid"></div></div>
+    <div class="pools">
+      <div><h3>Equipment free, by hour</h3><div class="scroll"><table id="equip-table"></table></div></div>
+      <div><h3>Volunteers free, by hour</h3><div class="scroll"><table id="vol-table"></table></div></div>
+    </div>
+  </section>
+
+  <section id="desks">
+    <div class="section-head"><h2><span class="num">03</span> The five desks</h2>
+      <p class="aside">No desk can touch another desk's ledger. They only pass notes.</p></div>
+    <div class="desks">
+      <article class="desk" style="--c: var(--event)">
+        <header><span class="tag">Desk 1</span><h3>Event desk</h3></header>
+        <p>One clerk per event. Files the request, knows how flexible the event really is, scores every offer and says <b>yes</b> or <b>no</b>.</p>
+        <p class="says">Says: REQUEST · SCORES · ACCEPT · REJECT</p>
+      </article>
+      <article class="desk" style="--c: var(--resource)">
+        <header><span class="tag">Desk 2</span><h3>Resource desk</h3></header>
+        <p>Keeps the room and equipment register. Answers whether something is free, who holds it, and what else would do. Refuses double bookings.</p>
+        <p class="says">Says: AVAILABLE · CONFLICT · ALTERNATIVE · ALLOCATED · REFUSE</p>
+      </article>
+      <article class="desk" style="--c: var(--volunteer)">
+        <header><span class="tag">Desk 3</span><h3>Volunteer desk</h3></header>
+        <p>Keeps the roster by skill. When short, borrows from the general pool and reports honestly how much of the request it can cover.</p>
+        <p class="says">Says: OFFER · INSUFFICIENT · ASSIGNED</p>
+      </article>
+      <article class="desk" style="--c: var(--budget)">
+        <header><span class="tag">Desk 4</span><h3>Budget desk</h3></header>
+        <p>Holds the purse. Approves or rejects every quote against what is left and will not sign anything that overspends.</p>
+        <p class="says">Says: APPROVE · REJECT · COMMITTED</p>
+      </article>
+      <article class="desk" style="--c: var(--coord)">
+        <header><span class="tag">Desk 5</span><h3>Coordinator</h3></header>
+        <p>Owns nothing. Collects every desk's answer, spots clashes, bumps a lower-priority booking when it must, searches for the best combination (A*) and renegotiates when an event pushes back.</p>
+        <p class="says">Says: QUERY · QUOTE · PROPOSE · PREEMPT · COMMIT · CONFIRM</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="section-head"><h2><span class="num">04</span> Book a slot</h2>
+      <p class="aside">Fill the slip. It goes to the desks on top of everything already booked today.</p></div>
+    <form id="slip" class="slip">
+      <div class="row">
+        <label>Event name <input name="name" required maxlength="40" value="Photography Walk"></label>
+        <label>Priority <select name="priority">
+          <option value="1">1 · nice to have</option><option value="2">2</option><option value="3" selected>3 · normal</option>
+          <option value="4">4</option><option value="5">5 · headline</option></select></label>
+        <label>Participants <input name="participants" type="number" min="1" max="5000" value="40" required></label>
+      </div>
+      <div class="row">
+        <label>From <select name="start" id="f-start"></select></label>
+        <label>To <select name="end" id="f-end"></select></label>
+        <label>Can move by <select name="flexible_hours">
+          <option value="0">not at all</option><option value="1" selected>± 1 hour</option>
+          <option value="2">± 2 hours</option><option value="3">± 3 hours</option></select></label>
+      </div>
+      <div class="row">
+        <label>Venue type wanted <select name="venue_type" id="f-type"></select></label>
+        <fieldset><legend>Would also accept</legend><div id="f-also" class="checks"></div></fieldset>
+        <label>Specific venue <select name="preferred_venue" id="f-venue"></select></label>
+      </div>
+      <fieldset><legend>Equipment</legend><div class="counts" id="f-equip"></div></fieldset>
+      <fieldset><legend>Volunteers</legend><div class="counts" id="f-vol"></div></fieldset>
+      <div class="row">
+        <label>Other costs (₹) <input name="extra_cost" type="number" min="0" step="500" value="0"></label>
+        <label>Fewest volunteers you'd accept <select name="min_volunteer_ratio">
+          <option value="1">all of them</option><option value="0.8">80%</option>
+          <option value="0.6">60%</option><option value="0.5">half</option></select></label>
+        <div class="actions">
+          <button type="submit" class="stamp-btn">Send to the desks</button>
+          <button type="button" id="clear" class="plain">Clear my slips</button>
+        </div>
+      </div>
+      <p id="slip-error" class="error" role="alert"></p>
+    </form>
+    <div id="outcome" class="outcome" hidden></div>
+  </section>
+
+  <section id="theatre">
+    <div class="section-head"><h2><span class="num">05</span> Watch the desks work</h2>
+      <div class="controls">
+        <button id="play" class="plain">Pause</button>
+        <button id="step" class="plain">Next note</button>
+        <button id="skip" class="plain">Show all</button>
+        <label>Speed <select id="speed"><option value="900">slow</option><option value="420" selected>normal</option><option value="120">fast</option></select></label>
+      </div>
+    </div>
+    <p class="aside" id="theatre-caption">Book a slot or pick a review scenario to see the notes being passed.</p>
+    <div class="lanes" id="lanes">
+      <div class="lane-head" style="--c: var(--event)">Event desk</div>
+      <div class="lane-head" style="--c: var(--coord)">Coordinator</div>
+      <div class="lane-head" style="--c: var(--resource)">Resource</div>
+      <div class="lane-head" style="--c: var(--volunteer)">Volunteer</div>
+      <div class="lane-head" style="--c: var(--budget)">Budget</div>
+    </div>
+    <div class="feed" id="feed"></div>
+  </section>
+
+  <section id="scenarios">
+    <div class="section-head"><h2><span class="num">06</span> Review scenarios</h2>
+      <label class="clock">Coordinator searches with
+        <select id="strategy"><option value="astar">A* (look-ahead)</option><option value="greedy">Greedy (first fit)</option></select>
+      </label>
+    </div>
+    <div class="scenario-list" id="scenario-list"></div>
+    <div id="scenario-result"></div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>Campus Fest Resource Allocation · a multi-agent system built on Mesa · Python · FastAPI</p>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
