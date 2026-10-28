@@ -1,0 +1,31 @@
+{
+  "budget": 80000,
+  "venues": [
+    {"id": "Lab-1", "type": "lab", "capacity": 150, "cost": 3000},
+    {"id": "Lab-2", "type": "lab", "capacity": 130, "cost": 2500},
+    {"id": "Lab-3", "type": "lab", "capacity": 60, "cost": 1500},
+    {"id": "Seminar-Hall", "type": "hall", "capacity": 200, "cost": 4000},
+    {"id": "Auditorium", "type": "hall", "capacity": 800, "cost": 12000},
+    {"id": "Main-Stage", "type": "stage", "capacity": 1500, "cost": 13000},
+    {"id": "Open-Air-Stage", "type": "stage", "capacity": 600, "cost": 2000},
+    {"id": "Sports-Ground", "type": "ground", "capacity": 2000, "cost": 2000},
+    {"id": "Classroom-101", "type": "classroom", "capacity": 60, "cost": 500},
+    {"id": "Classroom-102", "type": "classroom", "capacity": 60, "cost": 500}
+  ],
+  "equipment": [
+    {"id": "Projector-1", "type": "projector", "cost": 500},
+    {"id": "Projector-2", "type": "projector", "cost": 500},
+    {"id": "Projector-3", "type": "projector", "cost": 500},
+    {"id": "Mic-1", "type": "microphone", "cost": 200},
+    {"id": "Mic-2", "type": "microphone", "cost": 200},
+    {"id": "Mic-3", "type": "microphone", "cost": 200},
+    {"id": "Mic-4", "type": "microphone", "cost": 200},
+    {"id": "Speaker-1", "type": "speaker", "cost": 800},
+    {"id": "Speaker-2", "type": "speaker", "cost": 800},
+    {"id": "Vehicle-1", "type": "vehicle", "cost": 1500},
+    {"id": "Vehicle-2", "type": "vehicle", "cost": 1500},
+    {"id": "Food-Stall-1", "type": "food_stall", "cost": 1000},
+    {"id": "Food-Stall-2", "type": "food_stall", "cost": 1000},
+    {"id": "Food-Stall-3", "type": "food_stall", "cost": 1000}
+  ]
+}
